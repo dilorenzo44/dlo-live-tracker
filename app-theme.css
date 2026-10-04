@@ -1,0 +1,269 @@
+/* v0.5.32 — single authoritative visual layer.
+   Theme is applied to <html data-dlo-theme> so dynamically-created overlay pieces
+   receive it immediately. Semantic bet/update status colors remain status colors. */
+html[data-dlo-theme="espn"] #dlo-update-stack,
+html[data-dlo-theme="espn"] #dlo-all-bets,
+html[data-dlo-theme="espn"] .dlo-pop,
+html[data-dlo-theme="espn"] .dlo-anchor{
+  --dlo-font:-apple-system,BlinkMacSystemFont,"Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
+  --dlo-bg:#050505;--dlo-surface:#0b0b0c;--dlo-surface2:#141416;--dlo-control:#101012;
+  --dlo-border:#303034;--dlo-border-soft:#242428;--dlo-text:#f7f7f8;--dlo-muted:#9b9ba3;
+  --dlo-accent:#d71920;--dlo-hover:#1d1d20;--dlo-shadow:0 12px 30px #0009;
+}
+html[data-dlo-theme="sleeper"] #dlo-update-stack,
+html[data-dlo-theme="sleeper"] #dlo-all-bets,
+html[data-dlo-theme="sleeper"] .dlo-pop,
+html[data-dlo-theme="sleeper"] .dlo-anchor{
+  --dlo-font:-apple-system,BlinkMacSystemFont,"Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
+  --dlo-bg:#0d1012;--dlo-surface:#15191c;--dlo-surface2:#1d2327;--dlo-control:#111619;
+  --dlo-border:#343d42;--dlo-border-soft:#283136;--dlo-text:#f4f7f8;--dlo-muted:#9ca8ae;
+  --dlo-accent:#00ceb8;--dlo-hover:#242b2f;--dlo-shadow:0 12px 30px #0009;
+}
+#dlo-update-stack,#dlo-all-bets,.dlo-pop,.dlo-anchor{font-family:var(--dlo-font)!important;color:var(--dlo-text)!important}
+#dlo-update-stack *,#dlo-all-bets *,.dlo-pop *,.dlo-anchor *{font-family:var(--dlo-font)!important;box-sizing:border-box!important}
+
+/* One shell geometry for every dock panel. */
+#dlo-update-stack>.dlo-update-panel,
+#dlo-update-stack>.dlf-fantasy-panel,
+#dlo-update-stack>.dlf-standings-panel,
+#dlo-all-bets{
+  width:320px!important;max-width:calc(100vw - 8px)!important;
+  background:var(--dlo-surface)!important;color:var(--dlo-text)!important;
+  border:1px solid var(--dlo-border)!important;border-top:2px solid var(--dlo-accent)!important;
+  border-radius:12px!important;box-shadow:var(--dlo-shadow)!important;backdrop-filter:none!important;
+  overflow:hidden!important;
+}
+#dlo-update-stack>.dlo-update-panel,
+#dlo-update-stack>.dlf-fantasy-panel,
+#dlo-update-stack>.dlf-standings-panel{right:0!important;bottom:38px!important;padding:8px!important}
+#dlo-all-bets{right:0!important;left:auto!important;padding:8px!important}
+
+/* Same title/header treatment everywhere that has a title. */
+#dlo-all-bets .dlo-all-bets-head,
+.dlo-pop .dlo-head{
+  min-height:34px!important;margin:-8px -8px 8px!important;padding:0 10px!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  background:var(--dlo-bg)!important;color:var(--dlo-text)!important;border:0!important;
+  border-bottom:1px solid var(--dlo-border)!important;border-radius:10px 10px 0 0!important;
+  font-size:12px!important;font-weight:800!important;line-height:1.2!important;letter-spacing:.02em!important;
+}
+
+/* Dock uses theme variables too. */
+#dlo-update-stack>.dlo-update-bar{background:var(--dlo-bg)!important;border-color:var(--dlo-border)!important;border-top:2px solid var(--dlo-accent)!important}
+#dlo-update-stack>.dlo-update-bar>button{background:var(--dlo-bg)!important;color:var(--dlo-text)!important;border-color:var(--dlo-border)!important;font-size:10px!important;font-weight:750!important;line-height:1!important}
+#dlo-update-stack>.dlo-update-bar>button:hover{background:var(--dlo-hover)!important}
+#dlo-update-stack>.dlf-sync-btn{background:var(--dlo-accent)!important;border-color:color-mix(in srgb,var(--dlo-accent) 65%,white)!important;color:#fff!important}
+
+/* Shared neutral surfaces and controls. */
+#dlo-update-stack .dlf-score,#dlo-update-stack .dlf-controls,#dlo-update-stack .dlf-median,
+#dlo-update-stack .dlo-update-actions,#dlo-update-stack .dlo-update-empty-state,
+#dlo-all-bets .dlo-prop-legs-toggle,#dlo-all-bets .dlo-prop-legs-detail,
+.dlo-pop .dlo-parlay-toggle{background:var(--dlo-surface2)!important;border-color:var(--dlo-border)!important;color:var(--dlo-text)!important;box-shadow:none!important}
+#dlo-update-stack .dlf-my-team,#dlo-update-stack .dlf-median-toggle{background:var(--dlo-control)!important;color:var(--dlo-text)!important;border-color:var(--dlo-border)!important}
+#dlo-update-stack .dlf-median-toggle button.on{background:var(--dlo-accent)!important;color:#fff!important}
+#dlo-update-stack .dlf-mini:hover{background:var(--dlo-hover)!important;border-color:var(--dlo-border)!important}
+#dlo-update-stack .dlf-player-name,#dlo-update-stack .dlf-score .team,#dlo-update-stack .dlf-score .pts,
+#dlo-update-stack .dlf-median-row,#dlo-all-bets .dlo-player,#dlo-all-bets .dlo-prop{color:var(--dlo-text)!important}
+#dlo-update-stack .dlf-player small,#dlo-update-stack .dlf-mini-title,#dlo-update-stack .dlf-team-choice>span,
+#dlo-update-stack .dlf-score .proj,#dlo-update-stack .dlf-median-note,#dlo-all-bets .dlo-meta{color:var(--dlo-muted)!important}
+
+/* One typography scale. Featured names are 12px in every panel. */
+#dlo-update-stack,#dlo-all-bets{font-size:11px!important;line-height:1.25!important}
+#dlo-all-bets .dlo-team-header .dlo-player,
+#dlo-update-stack .dlo-update-history-row>b,
+#dlo-update-stack .dlf-player-name,
+#dlo-update-stack .dlf-score .team{font-size:12px!important;line-height:1.2!important;font-weight:800!important;letter-spacing:0!important}
+#dlo-all-bets .dlo-prop,#dlo-all-bets .dlo-progress-text,#dlo-all-bets .dlo-status-text,
+#dlo-update-stack .dlo-update-history-row>span,#dlo-update-stack .dlf-player,#dlo-update-stack .dlf-median-row{font-size:11px!important;line-height:1.25!important}
+#dlo-all-bets .dlo-meta,#dlo-all-bets .dlo-prop-legs-toggle,
+#dlo-update-stack .dlo-update-history-row>em,#dlo-update-stack .dlo-update-history-row>small,
+#dlo-update-stack .dlf-mini-title,#dlo-update-stack .dlf-median-note,#dlo-update-stack .dlf-player small{font-size:10px!important;line-height:1.25!important}
+
+/* Normalize internal spacing without changing semantic card colors. */
+#dlo-all-bets .dlo-bet{margin:0!important;padding:9px 10px!important;border-radius:8px!important}
+#dlo-all-bets .dlo-prop-group{margin:0 0 7px!important}
+#dlo-all-bets .dlo-prop-legs-toggle{margin:5px 0 0!important;min-height:28px!important;border-radius:7px!important;padding:5px 8px!important}
+#dlo-update-stack .dlo-update-history-row{padding:9px 10px!important;border-radius:8px!important}
+#dlo-update-stack .dlf-score{padding:8px!important;border-radius:8px!important}
+#dlo-update-stack .dlf-controls{margin-top:6px!important;padding:6px!important;border-radius:8px!important}
+#dlo-update-stack .dlf-median{margin:0!important;padding:8px!important;border-radius:8px!important}
+
+/* Keep semantic states recognizable across themes. */
+#dlo-all-bets .dlo-bet.dlo-good{background:#10251b!important;border-color:#1d4931!important}
+#dlo-all-bets .dlo-bet.dlo-mid{background:#272113!important;border-color:#51431e!important}
+#dlo-all-bets .dlo-bet.dlo-warn{background:#2a1d12!important;border-color:#5a3820!important}
+#dlo-all-bets .dlo-bet.dlo-bad{background:#291519!important;border-color:#552a31!important}
+#dlo-all-bets .dlo-bet.dlo-hit{background:#0c2c20!important;border-color:#35a866!important}
+
+/* Update unread signal stays visible while its label remains untouched. */
+#dlo-update-stack>.dlo-update-bar>.dlo-update-all>.dlo-update-label{color:var(--dlo-text)!important}
+
+@media(max-width:328px){
+ #dlo-update-stack,#dlo-update-stack>.dlo-update-panel,#dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-all-bets{width:100vw!important;max-width:100vw!important}
+}
+
+/* v0.5.34: consistent team marks on bet player rows */
+.dlo-bet .dlo-player-line{display:flex!important;align-items:center!important;gap:6px!important;min-width:0!important}
+.dlo-bet .dlo-player-icon{display:flex!important;align-items:center!important;justify-content:center!important;width:16px!important;height:16px!important;flex:0 0 16px!important}
+.dlo-bet .dlo-bet-team-icon{display:block!important;width:16px!important;height:16px!important;object-fit:contain!important}
+.dlo-bet .dlo-player{min-width:0!important}
+
+/* v0.5.37 fantasy scoreboard header */
+#dlo-update-stack .dlf-score .dlf-side{text-align:center!important;}
+#dlo-update-stack .dlf-score .team{text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin-bottom:4px!important;}
+#dlo-update-stack .dlf-score .dlf-scoreline{display:flex!important;align-items:baseline!important;justify-content:center!important;gap:8px!important;}
+#dlo-update-stack .dlf-score .pts,#dlo-update-stack .dlf-score .proj{font-size:17px!important;line-height:1.1!important;font-weight:900!important;letter-spacing:-.02em!important;margin:0!important;}
+#dlo-update-stack .dlf-score .pts{color:var(--dlo-text)!important;}
+#dlo-update-stack .dlf-score .proj.dlf-proj-win{color:#45df8a!important;}
+#dlo-update-stack .dlf-score .proj.dlf-proj-loss{color:#ff6673!important;}
+#dlo-update-stack .dlf-score .proj.dlf-proj-tie{color:var(--dlo-muted)!important;}
+
+/* v0.5.38 — fantasy header: current total slightly larger than projection. */
+#dlo-update-stack .dlf-score .pts{font-size:18px!important;}
+#dlo-update-stack .dlf-score .proj{font-size:17px!important;}
+
+/* v0.5.39 — Updates use the same card language as All Bets. */
+#dlo-update-stack .dlo-update-list .dlo-update-history-row{
+  margin:0 0 7px!important;
+  padding:9px 10px!important;
+  border-radius:8px!important;
+  border-width:1px 1px 1px 4px!important;
+  border-style:solid!important;
+  box-shadow:none!important;
+  color:var(--dlo-text)!important;
+}
+#dlo-update-stack .dlo-update-list .dlo-update-history-row.dlo-update-positive,
+#dlo-update-stack .dlo-update-list .dlo-update-history-row.dlo-update-positive.dlo-update-latest{
+  background:#10251b!important;border-color:#1d4931!important;border-left-color:#35a866!important;
+}
+#dlo-update-stack .dlo-update-list .dlo-update-history-row.dlo-update-negative,
+#dlo-update-stack .dlo-update-list .dlo-update-history-row.dlo-update-negative.dlo-update-latest{
+  background:#291519!important;border-color:#552a31!important;border-left-color:#ff4d5e!important;
+}
+#dlo-update-stack .dlo-update-list .dlo-update-history-row.dlo-update-neutral,
+#dlo-update-stack .dlo-update-list .dlo-update-history-row.dlo-update-neutral.dlo-update-latest{
+  background:var(--dlo-surface2)!important;border-color:var(--dlo-border)!important;border-left-color:var(--dlo-muted)!important;
+}
+#dlo-update-stack .dlo-update-history-row>b{
+  color:var(--dlo-text)!important;font-size:12px!important;font-weight:800!important;line-height:1.2!important;
+  text-align:left!important;padding-left:0!important;margin:0!important;
+}
+#dlo-update-stack .dlo-update-history-row>span{
+  color:var(--dlo-text)!important;font-size:11px!important;font-weight:700!important;line-height:1.25!important;margin-top:3px!important;
+}
+#dlo-update-stack .dlo-update-history-row>em,
+#dlo-update-stack .dlo-update-history-row>small{
+  color:var(--dlo-muted)!important;font-size:10px!important;font-weight:600!important;line-height:1.25!important;margin-top:3px!important;
+}
+#dlo-update-stack .dlo-update-history-row.dlo-update-positive>span{color:#45df8a!important;}
+#dlo-update-stack .dlo-update-history-row.dlo-update-negative>span{color:#ff6673!important;}
+
+
+/* v0.5.40 — authoritative fantasy matchup header geometry. */
+#dlo-update-stack .dlf-score{grid-template-columns:minmax(0,1fr) 10px minmax(0,1fr)!important;gap:4px!important;}
+#dlo-update-stack .dlf-score .dlf-side{min-width:0!important;}
+#dlo-update-stack .dlf-score .team{
+  width:100%!important;min-width:0!important;max-width:100%!important;
+  font-size:11px!important;line-height:1.08!important;font-weight:800!important;
+  text-align:center!important;white-space:normal!important;overflow:hidden!important;text-overflow:clip!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;
+  max-height:2.16em!important;margin:0 0 5px!important;overflow-wrap:anywhere!important;
+}
+#dlo-update-stack .dlf-score .dlf-scoreline{display:flex!important;align-items:baseline!important;justify-content:center!important;gap:7px!important;white-space:nowrap!important;}
+#dlo-update-stack .dlf-score .pts{font-size:18px!important;}
+#dlo-update-stack .dlf-score .proj{font-size:17px!important;}
+
+/* v0.5.40 — make the two app themes visibly distinct across the complete overlay. */
+html[data-dlo-theme="espn"] #dlo-update-stack,
+html[data-dlo-theme="espn"] #dlo-all-bets,
+html[data-dlo-theme="espn"] .dlo-pop,
+html[data-dlo-theme="espn"] .dlo-anchor{
+  --dlo-bg:#050505;--dlo-surface:#0d0d0f;--dlo-surface2:#151518;--dlo-control:#101114;
+  --dlo-border:#343438;--dlo-text:#f5f5f5;--dlo-muted:#9a9aa1;--dlo-accent:#d71920;--dlo-hover:#202024;
+}
+html[data-dlo-theme="sleeper"] #dlo-update-stack,
+html[data-dlo-theme="sleeper"] #dlo-all-bets,
+html[data-dlo-theme="sleeper"] .dlo-pop,
+html[data-dlo-theme="sleeper"] .dlo-anchor{
+  --dlo-bg:#0b1115;--dlo-surface:#111a20;--dlo-surface2:#17242b;--dlo-control:#132028;
+  --dlo-border:#2a4650;--dlo-text:#f3fbfb;--dlo-muted:#8ea6ac;--dlo-accent:#00ceb8;--dlo-hover:#1b3037;
+}
+#dlo-update-stack>.dlo-update-bar{border-top-color:var(--dlo-accent)!important;}
+#dlo-update-stack .dlf-fantasy-panel,#dlo-update-stack .dlf-standings-panel,#dlo-update-stack .dlo-update-panel,#dlo-all-bets{border-top-color:var(--dlo-accent)!important;}
+#dlo-update-stack .dlf-score,#dlo-update-stack .dlf-controls,#dlo-update-stack .dlf-median{background:var(--dlo-surface)!important;border-color:var(--dlo-border)!important;}
+
+
+/* v0.5.41 — authoritative full-shell theming + fixed fantasy header baseline. */
+html[data-dlo-theme="espn"]{
+ --dlo-page-bg:#050505;--dlo-panel:#0d0d0f;--dlo-panel2:#151518;--dlo-control:#101114;
+ --dlo-line:#343438;--dlo-soft-line:#242428;--dlo-fg:#f5f5f5;--dlo-sub:#9a9aa1;
+ --dlo-brand:#d71920;--dlo-brand-soft:#2a1012;--dlo-hover2:#202024;
+}
+html[data-dlo-theme="sleeper"]{
+ --dlo-page-bg:#10161b;--dlo-panel:#182128;--dlo-panel2:#202c34;--dlo-control:#141e24;
+ --dlo-line:#344a54;--dlo-soft-line:#293b43;--dlo-fg:#f3fbfb;--dlo-sub:#91a7ad;
+ --dlo-brand:#00ceb8;--dlo-brand-soft:#0b3432;--dlo-hover2:#26363e;
+}
+/* Map old variables to the single root palette so every overlay descendant changes. */
+html[data-dlo-theme] #dlo-update-stack,html[data-dlo-theme] #dlo-all-bets,html[data-dlo-theme] .dlo-pop,html[data-dlo-theme] .dlo-anchor{
+ --dlo-bg:var(--dlo-page-bg)!important;--dlo-surface:var(--dlo-panel)!important;--dlo-surface2:var(--dlo-panel2)!important;
+ --dlo-control:var(--dlo-control)!important;--dlo-border:var(--dlo-line)!important;--dlo-border-soft:var(--dlo-soft-line)!important;
+ --dlo-text:var(--dlo-fg)!important;--dlo-muted:var(--dlo-sub)!important;--dlo-accent:var(--dlo-brand)!important;--dlo-hover:var(--dlo-hover2)!important;
+}
+/* Paint the complete application shell, not merely accents. */
+#dlo-update-stack>.dlo-update-bar,
+#dlo-update-stack>.dlo-update-panel,
+#dlo-update-stack>.dlf-fantasy-panel,
+#dlo-update-stack>.dlf-standings-panel,
+#dlo-all-bets,
+#dlo-all-bets .dlo-all-bets-head,
+#dlo-update-stack .dlf-score,
+#dlo-update-stack .dlf-controls,
+#dlo-update-stack .dlf-median,
+#dlo-update-stack .dlo-update-actions{background:var(--dlo-surface)!important;color:var(--dlo-text)!important;border-color:var(--dlo-border)!important}
+#dlo-update-stack>.dlo-update-bar,#dlo-all-bets .dlo-all-bets-head{background:var(--dlo-bg)!important}
+#dlo-update-stack>.dlo-update-bar>button{background:var(--dlo-bg)!important;color:var(--dlo-text)!important;border-color:var(--dlo-border)!important}
+#dlo-update-stack>.dlo-update-bar>button:hover{background:var(--dlo-hover)!important}
+#dlo-update-stack .dlf-my-team,#dlo-update-stack .dlf-median-toggle,#dlo-all-bets .dlo-prop-legs-toggle,#dlo-all-bets .dlo-prop-legs-detail{background:var(--dlo-control)!important;color:var(--dlo-text)!important;border-color:var(--dlo-border)!important}
+#dlo-update-stack>.dlo-update-bar,#dlo-update-stack>.dlo-update-panel,#dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-all-bets{border-top-color:var(--dlo-accent)!important}
+#dlo-update-stack>.dlf-sync-btn{background:var(--dlo-accent)!important;border-color:var(--dlo-accent)!important}
+
+/* Team names occupy an identical fixed two-line lane. Scores can never move vertically. */
+#dlo-update-stack .dlf-score{align-items:start!important}
+#dlo-update-stack .dlf-score .dlf-side{display:grid!important;grid-template-rows:24px 22px!important;align-items:start!important;min-width:0!important}
+#dlo-update-stack .dlf-score .team{height:24px!important;max-height:24px!important;margin:0!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;font-size:10px!important;line-height:12px!important;text-align:center!important}
+#dlo-update-stack .dlf-score .dlf-scoreline{height:22px!important;align-items:baseline!important;align-self:end!important;margin:0!important}
+#dlo-update-stack .dlf-score .pts{font-size:18px!important;line-height:20px!important}
+#dlo-update-stack .dlf-score .proj{font-size:17px!important;line-height:20px!important}
+#dlo-update-stack .dlf-vs{align-self:end!important;height:22px!important;line-height:20px!important}
+
+/* Bets/Updates typography is the source of truth for Fantasy + Standings. */
+#dlo-update-stack .dlf-fantasy-panel,#dlo-update-stack .dlf-standings-panel{font-family:var(--dlo-font)!important;font-size:11px!important;line-height:1.25!important}
+#dlo-update-stack .dlf-player-name,#dlo-update-stack .dlf-median-row b,#dlo-update-stack .dlf-median-head b{font-size:12px!important;font-weight:800!important;line-height:1.2!important;letter-spacing:0!important}
+#dlo-update-stack .dlf-mini b,#dlo-update-stack .dlf-median-row span,#dlo-update-stack .dlf-controls label,#dlo-update-stack .dlf-median-toggle button{font-size:11px!important;font-weight:700!important;line-height:1.25!important}
+#dlo-update-stack .dlf-player small,#dlo-update-stack .dlf-mini-title,#dlo-update-stack .dlf-team-choice>span,#dlo-update-stack .dlf-median-note{font-size:10px!important;line-height:1.25!important}
+
+/* v0.5.43 — All Bets must own its scroll area. The unified shell previously
+   forced overflow:hidden, which left the visible scrollbar unable to reach
+   content below the panel viewport. */
+#dlo-all-bets{
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  scrollbar-gutter:stable!important;
+}
+#dlo-all-bets .dlo-all-bets-head{
+  position:sticky!important;
+  top:-8px!important;
+  z-index:10!important;
+}
+
+/* v0.5.44 — fantasy team markers + hover stats */
+#dlo-update-stack .dlf-player{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto!important}
+#dlo-update-stack .dlf-player-name{grid-column:1!important}
+#dlo-update-stack .dlf-player small{grid-column:1!important;display:flex!important;align-items:center!important;gap:4px!important}
+#dlo-update-stack .dlf-team-stat-icon{appearance:none!important;border:0!important;background:transparent!important;padding:0!important;margin:0!important;width:15px!important;height:15px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;cursor:help!important;flex:0 0 15px!important}
+#dlo-update-stack .dlf-team-stat-icon .dlf-team-icon{width:15px!important;height:15px!important;display:block!important;object-fit:contain!important}
+.dlf-player-stat-tip{position:fixed!important;z-index:2147483647!important;width:220px!important;box-sizing:border-box!important;padding:8px 9px!important;border-radius:8px!important;background:#0b0c0f!important;border:1px solid #31343b!important;color:#f4f5f7!important;box-shadow:0 8px 28px #0009!important;font-family:Arial,Helvetica,sans-serif!important;font-size:10px!important;line-height:1.3!important;pointer-events:none!important}
+.dlf-player-stat-tip>b{display:block!important;font-size:11px!important;margin-bottom:2px!important}.dlf-player-stat-tip>span,.dlf-player-stat-tip>em{display:block!important;color:#9ba3af!important;font-style:normal!important}.dlf-player-stat-tip>div{display:grid!important;grid-template-columns:1fr 1fr!important;gap:3px 8px!important;margin-top:6px!important}.dlf-player-stat-tip>div span{white-space:nowrap!important}.dlf-player-stat-tip strong{color:#c9ced6!important;font-weight:800!important}
+html[data-dlo-theme="sleeper"] .dlf-player-stat-tip{background:#17202a!important;border-color:#2b3d4d!important;color:#f6fbff!important}

@@ -1,0 +1,317 @@
+/* DLo Live Tracker v0.2.1 — Fantasy is housed inside the Bet Tracker dock. */
+#dlo-fantasy-root,#dlo-fantasy-root-v013{display:none!important;visibility:hidden!important;pointer-events:none!important}
+#dlo-update-stack.dlf-fantasy-disabled>.dlo-update-bar>.dlf-combined-btn{display:none!important}
+#dlo-update-stack.dlf-bets-disabled>.dlo-update-bar>.dlo-all-bets-btn{display:none!important}
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn{all:unset!important;display:inline-flex!important;align-items:center!important;gap:4px!important;box-sizing:border-box!important;opacity:1!important;background:#182332!important;color:#eef4fb!important;border:1px solid #34455b!important;box-shadow:0 5px 16px #0005!important;border-radius:999px!important;padding:6px 9px!important;font:750 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;cursor:pointer!important;white-space:nowrap!important}
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn em{font-style:normal!important;min-width:16px!important;text-align:center!important;background:#26374e!important;border-radius:999px!important;padding:2px 4px!important}
+#dlo-update-stack>.dlf-fantasy-panel{display:none!important;position:absolute!important;right:0!important;bottom:40px!important;width:270px!important;background:#0c1420!important;border:1px solid #2b3c52!important;border-radius:10px!important;padding:7px!important;box-shadow:0 12px 30px #0009!important;color:#eef5ff!important;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;z-index:4!important}
+#dlo-update-stack.dlf-fantasy-open>.dlf-fantasy-panel{display:block!important}
+#dlo-update-stack.dlf-fantasy-open>.dlo-update-panel{display:none!important}
+#dlo-update-stack.dlf-fantasy-open>.dlo-update-bar{opacity:1!important}
+.dlf-score{display:grid!important;grid-template-columns:minmax(0,1fr) 12px minmax(0,1fr)!important;align-items:center!important;gap:5px!important;background:#111d2a!important;border-radius:7px!important;padding:7px!important}.dlf-side{min-width:0!important}.dlf-right{text-align:right!important}.dlf-score .team{font-size:10px!important;opacity:.72!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}.dlf-score .pts{font-size:17px!important;font-weight:900!important;line-height:1.1!important;margin-top:2px!important}.dlf-vs{text-align:center!important;opacity:.35!important}.dlf-list{margin-top:4px!important}.dlf-mini-title{font-size:9px!important;text-transform:uppercase!important;letter-spacing:.08em!important;opacity:.45!important;padding:3px 3px 2px!important}.dlf-mini{display:flex!important;justify-content:space-between!important;gap:8px!important;padding:4px 5px!important;border-top:1px solid #ffffff0b!important}.dlf-mini span{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}.dlf-mini b{color:#61db8f!important}.dlf-mini.opp b{color:#f17b83!important}.dlf-hint,.dlf-nosync{padding:7px!important;text-align:center!important;color:#aebbd0!important}.dlf-nosync{font-weight:800!important}
+.dlf-toast{position:fixed!important;right:12px!important;bottom:58px!important;width:260px!important;border-radius:9px!important;padding:9px 10px!important;border:1px solid!important;box-shadow:0 10px 26px #0009!important;z-index:2147483647!important;opacity:1!important;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important}.dlf-good{background:#0d5f34!important;border-color:#35c978!important}.dlf-bad{background:#641923!important;border-color:#dc5968!important}.dlf-toast .who{font-size:12px!important;font-weight:850!important;opacity:1!important}.dlf-toast .event{font-size:15px!important;font-weight:900!important;margin-top:2px!important;opacity:1!important}.dlf-toast .sub{font-size:10px!important;margin-top:2px!important;opacity:1!important}.dlf-toast.td{width:280px!important}.dlf-toast.td .event{font-size:19px!important}.dlf-confetti{position:fixed!important;pointer-events:none!important;z-index:2147483647!important;overflow:visible!important}.dlf-confetti i{position:absolute!important;width:7px!important;height:12px!important;border-radius:2px!important;background:currentColor!important;opacity:0!important;transform:translate(-50%,-50%) scale(.65)!important;animation:dlfBurst 1.15s cubic-bezier(.16,.75,.3,1) forwards!important}@keyframes dlfBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.55) rotate(0deg)}10%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot))}}@media(max-width:700px){#dlo-update-stack>.dlf-fantasy-panel{width:235px!important}.dlf-toast{width:240px!important}}
+
+/* v0.2.4 — unified bottom dock controls. Fantasy follows the exact Bet dock geometry. */
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn{
+  all:unset!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0 10px!important;
+  gap:4px!important;
+  opacity:1!important;
+  background:#182332!important;
+  color:#eef4fb!important;
+  border:1px solid #34455b!important;
+  border-radius:8px!important;
+  box-shadow:0 5px 16px #0005!important;
+  font:700 11px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
+  cursor:pointer!important;
+  white-space:nowrap!important;
+}
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn em{
+  display:inline!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border-radius:0!important;
+  font:inherit!important;
+  color:inherit!important;
+}
+
+/* v0.3.1 — TD notification polish */
+.dlf-toast.td.dlf-opp-td .event{font-size:14px!important;line-height:1.15!important;}
+.dlf-confetti{position:fixed!important;inset:0!important;width:0!important;height:0!important;overflow:visible!important;pointer-events:none!important;z-index:2147483647!important;}
+.dlf-confetti i{position:fixed!important;width:8px!important;height:13px!important;border-radius:2px!important;background:currentColor!important;opacity:0!important;transform:translate(-50%,-50%) scale(.6) rotate(0deg)!important;animation:none!important;}
+.dlf-confetti.dlf-go i{animation:dlfBurstFixed 1.3s cubic-bezier(.12,.72,.24,1) var(--delay,0s) forwards!important;}
+@keyframes dlfBurstFixed{0%{opacity:0;transform:translate(-50%,-50%) scale(.45) rotate(0deg)}8%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot))}}
+
+
+/* v0.3.4 — fantasy alerts sit above the lowered dock and can be dismissed. */
+.dlf-toast{bottom:42px!important;padding-right:38px!important;}
+.dlf-toast .dlf-toast-x{position:absolute!important;right:8px!important;top:8px!important;width:22px!important;height:22px!important;border:0!important;border-radius:6px!important;background:#0004!important;color:#fff!important;font:800 15px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+.dlf-toast .dlf-toast-x:hover{background:#0008!important;}
+
+/* v0.3.5 — roster visibility, team icons, bench toggle, dock position. */
+.dlf-controls{display:flex!important;justify-content:flex-end!important;align-items:center!important;padding:5px 4px 2px!important;border-bottom:1px solid #ffffff12!important}.dlf-controls label{display:flex!important;align-items:center!important;gap:5px!important;font-size:10px!important;font-weight:750!important;color:#b9c7d9!important;cursor:pointer!important}.dlf-controls input{margin:0!important}.dlf-mini{align-items:center!important;min-height:31px!important}.dlf-player{display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;grid-template-rows:auto auto!important;column-gap:6px!important;align-items:center!important;min-width:0!important;flex:1!important}.dlf-team-icon{grid-row:1/3!important;width:20px!important;height:20px!important;object-fit:contain!important;display:block!important;flex:none!important}.dlf-player-name{grid-column:2!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-weight:750!important}.dlf-player small{grid-column:2!important;font-size:8.5px!important;line-height:1.1!important;opacity:.55!important;white-space:nowrap!important}.dlf-mini.bench{opacity:.68!important}.dlf-opp-title{margin-top:4px!important}.dlf-toast{bottom:78px!important}
+
+/* v0.3.6 — compact fantasy roster so busy slates do not stack excessively high. */
+#dlo-update-stack>.dlf-fantasy-panel{width:258px!important;padding:6px!important;}
+.dlf-score{padding:5px 6px!important;}
+.dlf-score .pts{font-size:15px!important;}
+.dlf-controls{padding:3px 3px 1px!important;}
+.dlf-list{margin-top:2px!important;}
+.dlf-mini-title{font-size:8px!important;padding:2px 3px 1px!important;}
+.dlf-mini{min-height:25px!important;padding:2px 4px!important;gap:6px!important;}
+.dlf-player{grid-template-columns:19px minmax(0,1fr)!important;column-gap:5px!important;}
+.dlf-team-icon{width:17px!important;height:17px!important;}
+.dlf-player-name{font-size:10.5px!important;line-height:1.05!important;}
+.dlf-player small{font-size:7.5px!important;line-height:1!important;}
+.dlf-mini b{font-size:10.5px!important;}
+.dlf-toast{bottom:90px!important;}
+/* v0.3.7 one-click fantasy sync beside the dock controls */
+#dlo-update-stack>.dlo-update-bar>.dlf-sync-btn{all:unset!important;box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;border-radius:999px!important;background:#182332!important;color:#eef4fb!important;border:1px solid #34455b!important;box-shadow:0 5px 16px #0005!important;font:900 16px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;cursor:pointer!important}
+
+/* v0.3.8 — make fantasy sync obvious and reachable in the floating dock. */
+#dlo-update-stack>.dlo-update-bar>.dlf-sync-btn{width:auto!important;min-width:62px!important;padding:0 9px!important;border-radius:8px!important;font-size:11px!important;white-space:nowrap!important}
+
+
+/* v0.4.0 — keep fantasy notifications above the raised dock. */
+.dlf-toast{bottom:148px!important;}
+
+/* v0.4.4 — visual refresh. Conditional good/bad colors intentionally unchanged. */
+#dlo-update-stack>.dlf-fantasy-panel{width:270px!important;padding:8px!important;background:linear-gradient(180deg,#101b29 0%,#0a121d 100%)!important;border:1px solid #40536d!important;border-radius:14px!important;box-shadow:0 18px 48px #000b,0 0 0 1px #ffffff08 inset!important;backdrop-filter:blur(14px)!important}
+.dlf-score{padding:8px 9px!important;background:linear-gradient(135deg,#172638,#101b29)!important;border:1px solid #31465f!important;border-radius:10px!important;box-shadow:0 5px 16px #0004!important}
+.dlf-score .team{font-size:10.5px!important;font-weight:850!important;opacity:.9!important;color:#f4f8fd!important}.dlf-score .proj{font-size:8px!important;line-height:1.1!important;margin-top:2px!important;color:#8fa5bf!important;font-weight:750!important}.dlf-score .pts{font-size:17px!important;letter-spacing:-.02em!important}
+.dlf-controls{margin-top:5px!important;padding:4px 5px!important;border:1px solid #253950!important;border-radius:8px!important;background:#0d1825!important}.dlf-controls label{color:#c4d2e2!important}.dlf-mini-title{font-weight:900!important;color:#8297af!important;opacity:1!important;letter-spacing:.12em!important;margin-top:3px!important}.dlf-mini{margin:2px 0!important;padding:3px 5px!important;border:1px solid transparent!important;border-top-color:#ffffff0b!important;border-radius:7px!important;transition:background .14s ease,border-color .14s ease!important}.dlf-mini:hover{background:#162436!important;border-color:#2b4059!important}.dlf-player-name{font-weight:800!important;color:#f2f6fb!important}.dlf-player small{color:#91a4bb!important;opacity:.78!important}
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn,#dlo-update-stack>.dlo-update-bar>.dlf-sync-btn{background:linear-gradient(180deg,#1b2b3e,#111c2a)!important;border-color:#40536c!important;box-shadow:0 7px 20px #0007,0 1px 0 #ffffff10 inset!important}
+
+
+/* v0.4.5 — league median standings with Current / Projected views. */
+.dlf-median{margin-top:6px!important;padding:6px!important;background:#0b1521!important;border:1px solid #2c4057!important;border-radius:10px!important;box-shadow:0 5px 16px #0003!important}
+.dlf-median-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:6px!important;margin-bottom:5px!important}.dlf-median-head>b{font-size:8px!important;letter-spacing:.12em!important;color:#91a5bd!important}.dlf-median-toggle{display:flex!important;gap:2px!important;background:#07101a!important;padding:2px!important;border-radius:7px!important}.dlf-median-toggle button{all:unset!important;padding:3px 6px!important;border-radius:5px!important;font:800 8px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;color:#8195ad!important;cursor:pointer!important}.dlf-median-toggle button.on{background:#263a51!important;color:#fff!important;box-shadow:0 1px 4px #0007!important}.dlf-median-note{font-size:7.5px!important;color:#91a5bd!important;padding:2px 3px 5px!important}.dlf-median-rows{display:grid!important;gap:1px!important}.dlf-median-row{display:grid!important;grid-template-columns:16px minmax(0,1fr) 40px 15px!important;align-items:center!important;min-height:17px!important;padding:1px 3px!important;border-radius:4px!important;font-size:8.5px!important;color:#c6d2df!important}.dlf-median-row.cut{margin-top:4px!important;border-top:1px dashed #61758d!important;padding-top:4px!important}.dlf-median-row.mine{background:#ffffff0c!important;color:#fff!important}.dlf-median-row .rank{color:#7389a2!important}.dlf-median-row .name{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}.dlf-median-row b{text-align:right!important;font-size:9px!important}.dlf-median-row em{font-style:normal!important;text-align:right!important;font-weight:900!important;opacity:.8!important}
+\n\n/* v0.4.8 — Median standings are their own dock view, with a larger display and type. */
+#dlo-update-stack.dlf-fantasy-disabled>.dlo-update-bar>.dlf-standings-btn{display:none!important}
+#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{all:unset!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;height:32px!important;min-height:32px!important;padding:0 10px!important;gap:4px!important;background:linear-gradient(180deg,#1b2b3e,#111c2a)!important;color:#eef4fb!important;border:1px solid #40536c!important;border-radius:8px!important;box-shadow:0 7px 20px #0007,0 1px 0 #ffffff10 inset!important;font:700 11px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;cursor:pointer!important;white-space:nowrap!important}
+#dlo-update-stack>.dlf-standings-panel{display:none!important;position:absolute!important;right:0!important;bottom:40px!important;width:330px!important;max-height:520px!important;overflow:auto!important;background:linear-gradient(180deg,#101b29 0%,#0a121d 100%)!important;border:1px solid #40536d!important;border-radius:14px!important;padding:10px!important;box-shadow:0 18px 48px #000b,0 0 0 1px #ffffff08 inset!important;color:#eef5ff!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;z-index:5!important}
+#dlo-update-stack.dlf-median-open>.dlf-standings-panel{display:block!important}
+#dlo-update-stack.dlf-median-open>.dlo-update-panel,#dlo-update-stack.dlf-median-open>.dlf-fantasy-panel{display:none!important}
+.dlf-standings-panel .dlf-median{margin:0!important;padding:10px!important;border-radius:11px!important}
+.dlf-standings-panel .dlf-median-head{margin-bottom:9px!important;gap:10px!important}
+.dlf-standings-panel .dlf-median-head>b{font-size:11px!important;letter-spacing:.1em!important}
+.dlf-standings-panel .dlf-median-toggle{padding:3px!important;gap:3px!important}
+.dlf-standings-panel .dlf-median-toggle button{padding:5px 9px!important;font-size:10px!important}
+.dlf-standings-panel .dlf-median-note{font-size:10px!important;padding:4px 4px 8px!important}
+.dlf-standings-panel .dlf-median-rows{gap:3px!important}
+.dlf-standings-panel .dlf-median-row{grid-template-columns:22px minmax(0,1fr) 52px 20px!important;min-height:25px!important;padding:3px 5px!important;font-size:11px!important;border-radius:6px!important}
+.dlf-standings-panel .dlf-median-row b{font-size:11.5px!important}
+.dlf-standings-panel .dlf-median-row.cut{margin-top:6px!important;padding-top:7px!important}
+@media(max-width:700px){#dlo-update-stack>.dlf-standings-panel{width:300px!important;max-width:calc(100vw - 20px)!important}}
+
+
+/* v0.4.9 — fantasy sync is a clean standalone circle, not part of the dock. */
+#dlo-update-stack>.dlo-update-bar>.dlf-sync-btn{display:none!important}
+#dlo-update-stack>.dlf-sync-btn{all:unset!important;box-sizing:border-box!important;position:absolute!important;right:0!important;bottom:58px!important;width:48px!important;height:48px!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(145deg,#1b6fe5,#0d4ca8)!important;color:#fff!important;border:1px solid #75adff!important;box-shadow:0 10px 26px #0009,0 0 0 3px #1477ff20!important;font:900 25px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;cursor:pointer!important;z-index:20!important;opacity:1!important;visibility:visible!important}
+#dlo-update-stack>.dlf-sync-btn:hover{transform:translateY(-1px)!important;filter:brightness(1.08)!important}
+#dlo-update-stack.dlf-fantasy-disabled>.dlf-sync-btn{display:none!important}
+
+/* v0.5.0 — clean shell redraw. No legacy backplates; median cutoff is after rank 6. */
+#dlo-update-stack>.dlo-update-bar{
+  background:#0b1522!important;
+  border:1px solid #344a63!important;
+  border-radius:13px!important;
+  box-shadow:0 10px 28px #0008!important;
+  backdrop-filter:none!important;
+  padding:5px!important;
+  gap:5px!important;
+}
+#dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn,
+#dlo-update-stack>.dlo-update-bar>.dlo-update-all,
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn,
+#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn,
+#dlo-update-stack>.dlo-update-bar>.dlo-update-min{
+  background:#142235!important;
+  border:1px solid #354b64!important;
+  box-shadow:none!important;
+}
+#dlo-update-stack>.dlf-standings-panel{
+  bottom:43px!important;
+  width:330px!important;
+  background:#09131f!important;
+  border:1px solid #344b64!important;
+  border-radius:14px!important;
+  padding:10px!important;
+  box-shadow:0 16px 38px #000a!important;
+  overflow:hidden!important;
+}
+.dlf-standings-panel .dlf-median{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:7px 8px 9px!important;
+}
+.dlf-standings-panel .dlf-median-row{
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+.dlf-standings-panel .dlf-median-row.mine{background:#142130!important}
+.dlf-standings-panel .dlf-median-row.cut{
+  border-top:1px solid #26394d!important;
+  margin-top:6px!important;
+  padding-top:8px!important;
+}
+#dlo-update-stack>.dlf-sync-btn{
+  right:0!important;
+  bottom:58px!important;
+  width:48px!important;
+  height:48px!important;
+  background:#1768d5!important;
+  border:1px solid #76adff!important;
+  box-shadow:0 8px 20px #0008!important;
+  outline:0!important;
+}
+
+/* v0.5.1 — remove the legacy dock backplate completely. Controls are the shell. */
+#dlo-update-stack>.dlo-update-bar{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  padding:0!important;
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  align-self:flex-end!important;
+  overflow:visible!important;
+}
+
+/* v0.5.2 — floating sync stays above whichever tracker window is open. */
+#dlo-update-stack>.dlf-sync-btn{position:fixed!important;right:14px!important;bottom:118px!important;z-index:2147483647!important}
+
+
+/* v0.5.3 — fantasy/standings float above the fixed dock; only Sync moves. */
+#dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel{position:absolute!important;right:0!important;bottom:40px!important;}
+\n\n/* v0.5.4 — authoritative dock geometry. Dock is static/right-flush; only Sync floats. */
+#dlo-update-stack{right:10px!important;width:max-content!important;max-width:calc(100vw - 20px)!important;align-items:flex-end!important}
+#dlo-update-stack>.dlo-update-bar{position:relative!important;right:0!important;bottom:auto!important;width:max-content!important;max-width:calc(100vw - 20px)!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:5px!important}
+#dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn{width:auto!important;min-width:58px!important;padding:0 9px!important;white-space:nowrap!important}
+#dlo-update-stack>.dlo-update-bar>.dlo-update-all,#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn,#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{width:auto!important;white-space:nowrap!important}
+#dlo-update-stack>.dlf-sync-btn{right:10px!important}
+
+/* v0.5.5 — dock edge is truly flush with the page's right edge. */
+#dlo-update-stack{right:0!important;}
+#dlo-update-stack>.dlo-update-bar{right:0!important;margin-right:0!important;}
+
+
+/* v0.5.6 — authoritative responsive geometry. Static dock; only Sync floats. */
+#dlo-update-stack{right:0!important;left:auto!important;max-width:100vw!important;}
+#dlo-update-stack>.dlo-update-bar{right:0!important;margin:0!important;max-width:100vw!important;overflow:visible!important;}
+#dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-update-stack>.dlo-update-panel{right:0!important;max-width:calc(100vw - 8px)!important;box-sizing:border-box!important;}
+#dlo-update-stack>.dlf-sync-btn{right:8px!important;}
+@media(max-width:360px){
+ #dlo-update-stack{right:4px!important;width:calc(100vw - 8px)!important;}
+ #dlo-update-stack>.dlo-update-bar{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;gap:4px!important;}
+ #dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn,#dlo-update-stack>.dlo-update-bar>.dlo-update-all,#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn,#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{width:100%!important;min-width:0!important;justify-content:center!important;box-sizing:border-box!important;padding-left:5px!important;padding-right:5px!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+ #dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-update-stack>.dlo-update-panel{bottom:72px!important;width:calc(100vw - 8px)!important;max-width:calc(100vw - 8px)!important;}
+}
+
+/* v0.5.8 — Updates is global: never hide it with Bets/Fantasy display state. */
+#dlo-update-stack>.dlo-update-bar>.dlo-update-all{display:flex!important;}
+
+/* v0.5.11 — dock visually aligns with ESPN Fantasy Chat; selected fantasy team is persistent. */
+#dlo-update-stack{right:0!important;width:360px!important;max-width:calc(100vw - 8px)!important;}
+#dlo-update-stack>.dlo-update-bar{
+  width:100%!important;max-width:100%!important;height:34px!important;
+  display:flex!important;grid-template-columns:none!important;gap:0!important;
+  align-items:stretch!important;justify-content:stretch!important;
+  background:#050505!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;overflow:hidden!important;
+}
+#dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn,
+#dlo-update-stack>.dlo-update-bar>.dlo-update-all,
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn,
+#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{
+  flex:1 1 0!important;width:auto!important;min-width:0!important;height:34px!important;
+  border:0!important;border-right:1px solid #2a2a2a!important;border-radius:0!important;
+  background:#050505!important;color:#f4f4f4!important;box-shadow:none!important;
+  padding:0 7px!important;font-size:11px!important;justify-content:center!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
+}
+#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{border-right:0!important;}
+#dlo-update-stack>.dlo-update-bar>button:hover{background:#151515!important;}
+#dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-update-stack>.dlo-update-panel{
+  right:0!important;bottom:38px!important;width:360px!important;max-width:calc(100vw - 8px)!important;
+}
+#dlo-update-stack>.dlf-sync-btn{right:8px!important;}
+.dlf-controls{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;}
+.dlf-team-choice{display:flex!important;align-items:center!important;gap:5px!important;min-width:0!important;flex:1 1 auto!important;}
+.dlf-team-choice>span{font-size:10px!important;color:#91a5bd!important;white-space:nowrap!important;}
+.dlf-my-team{min-width:0!important;max-width:190px!important;height:25px!important;background:#07111c!important;color:#eef5ff!important;border:1px solid #344b64!important;border-radius:5px!important;font:700 10px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;padding:0 5px!important;}
+@media(max-width:360px){
+ #dlo-update-stack{right:0!important;width:100vw!important;max-width:100vw!important;}
+ #dlo-update-stack>.dlo-update-bar{display:flex!important;width:100%!important;gap:0!important;}
+ #dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn,#dlo-update-stack>.dlo-update-bar>.dlo-update-all,#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn,#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{width:auto!important;min-width:0!important;padding:0 4px!important;font-size:10px!important;}
+ #dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-update-stack>.dlo-update-panel{bottom:38px!important;width:100vw!important;max-width:100vw!important;}
+}
+
+/* v0.5.13 — match ESPN Fantasy Chat width (320px) while staying flush-right. */
+#dlo-update-stack{width:320px!important;max-width:calc(100vw - 8px)!important;}
+#dlo-update-stack>.dlf-fantasy-panel,
+#dlo-update-stack>.dlf-standings-panel,
+#dlo-update-stack>.dlo-update-panel{width:320px!important;max-width:calc(100vw - 8px)!important;}
+@media(max-width:328px){
+ #dlo-update-stack{width:100vw!important;max-width:100vw!important;}
+ #dlo-update-stack>.dlf-fantasy-panel,#dlo-update-stack>.dlf-standings-panel,#dlo-update-stack>.dlo-update-panel{width:100vw!important;max-width:100vw!important;}
+}
+
+/* v0.5.22 — seat the dock directly onto ESPN Fantasy Chat.
+   Tiny visual overlap removes the remaining seam without changing panel geometry. */
+#dlo-update-stack{transform:translateY(3px)!important;}
+
+/* v0.5.23 — final dock space allocation: give labels the space they actually need. */
+#dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn{flex:0 0 54px!important;width:54px!important;padding:0 4px!important;}
+#dlo-update-stack>.dlo-update-bar>.dlo-update-all{flex:0 0 82px!important;width:82px!important;padding:0 4px!important;}
+#dlo-update-stack>.dlo-update-bar>.dlf-combined-btn{flex:0 0 78px!important;width:78px!important;padding:0 4px!important;}
+#dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{flex:1 1 auto!important;width:auto!important;min-width:106px!important;padding:0 4px!important;}
+@media(max-width:328px){
+ #dlo-update-stack>.dlo-update-bar>.dlo-all-bets-btn{flex:0 0 17%!important;width:17%!important;}
+ #dlo-update-stack>.dlo-update-bar>.dlo-update-all{flex:0 0 26%!important;width:26%!important;}
+ #dlo-update-stack>.dlo-update-bar>.dlf-combined-btn{flex:0 0 25%!important;width:25%!important;}
+ #dlo-update-stack>.dlo-update-bar>.dlf-standings-btn{flex:1 1 32%!important;width:32%!important;min-width:0!important;}
+}
+
+
+/* v0.5.45 — fantasy roster markers beside NFL teams on ESPN scoreboard */
+.dlf-page-team-marker{display:inline-flex!important;vertical-align:middle!important;margin-left:5px!important;position:relative!important;z-index:2147482000!important}
+.dlf-page-team-btn{all:unset!important;box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;gap:2px!important;min-height:20px!important;padding:2px 6px!important;border-radius:999px!important;background:var(--dlo-surface2,#111)!important;border:1px solid var(--dlo-border,#343438)!important;color:var(--dlo-text,#fff)!important;font:800 11px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;cursor:pointer!important;box-shadow:0 1px 5px #0005!important}
+.dlf-page-team-btn>span{font-size:9px!important;color:var(--dlo-muted,#aaa)!important}
+.dlf-page-team-pop{display:none;position:fixed!important;z-index:2147483647!important;box-sizing:border-box!important;max-height:min(520px,calc(100vh - 16px))!important;overflow:auto!important;padding:8px!important;border-radius:10px!important;background:var(--dlo-bg,#080808)!important;border:1px solid var(--dlo-border,#343438)!important;border-top:2px solid var(--dlo-accent,#d71920)!important;color:var(--dlo-text,#f5f5f5)!important;box-shadow:var(--dlo-shadow,0 12px 30px #0009)!important;font:11px/1.25 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important}
+.dlf-page-pop-head{font-weight:900!important;font-size:10px!important;letter-spacing:.06em!important;margin:0 0 6px!important;color:var(--dlo-text,#fff)!important}
+.dlf-page-loading{color:var(--dlo-muted,#aaa)!important;padding:6px!important}
+.dlf-page-player{padding:8px!important;margin-top:6px!important;border:1px solid var(--dlo-border,#343438)!important;border-left:3px solid #41d98a!important;border-radius:8px!important;background:var(--dlo-surface,#111)!important}
+.dlf-page-player.opp{border-left-color:#ff5f6d!important}
+.dlf-page-player-head{display:flex!important;align-items:baseline!important;justify-content:space-between!important;gap:8px!important}.dlf-page-player-head b{font-size:12px!important}.dlf-page-player-head span{font-size:9px!important;color:var(--dlo-muted,#aaa)!important;white-space:nowrap!important}.dlf-page-player small{display:block!important;color:var(--dlo-muted,#aaa)!important;margin-top:4px!important}.dlf-page-player-stats{display:flex!important;flex-wrap:wrap!important;gap:4px 9px!important;margin-top:5px!important;color:var(--dlo-muted,#aaa)!important}.dlf-page-player-stats strong{color:var(--dlo-text,#fff)!important}
+
+/* v0.5.48: scan-first fantasy hover stats */
+.dlf-page-player{padding:9px!important}
+.dlf-page-player-head{align-items:center!important;margin-bottom:7px!important}
+.dlf-page-player-head b{color:#fff!important;font-size:12px!important;font-weight:800!important}
+.dlf-page-player-head span{color:#fff!important;font-size:9px!important;font-weight:700!important;opacity:.78!important}
+.dlf-stat-group{display:grid!important;grid-template-columns:38px 1fr!important;align-items:center!important;gap:7px!important;margin-top:5px!important}
+.dlf-stat-group-label{font-size:9px!important;font-weight:900!important;letter-spacing:.08em!important;color:#fff!important;opacity:.72!important}
+.dlf-stat-chips{display:flex!important;flex-wrap:wrap!important;gap:4px!important}
+.dlf-stat-chip{display:inline-flex!important;align-items:baseline!important;gap:4px!important;padding:3px 6px!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:6px!important;background:rgba(255,255,255,.035)!important;color:#fff!important;line-height:1!important}
+.dlf-stat-chip small{font-size:8px!important;font-weight:800!important;color:#fff!important;opacity:.72!important}
+.dlf-stat-chip b{font-size:11px!important;font-weight:900!important;color:#fff!important}
+
+/* v0.5.49 scoreboard fantasy hover readability */
+.dlf-page-player-head b{font-weight:600!important;}
+.dlf-page-player-head span{font-weight:500!important;}
+.dlf-page-player .dlf-stat-group,.dlf-page-player .dlf-stat-pill,.dlf-page-player small{font-weight:400!important;}
+.dlf-page-player .dlf-stat-group b,.dlf-page-player .dlf-stat-pill b{font-weight:500!important;}
