@@ -1,0 +1,92 @@
+{
+  "manifest_version": 3,
+  "name": "DLo Live Tracker",
+  "version": "0.5.59",
+  "version_name": "0.5.59 BET-ID Ticket Parser",
+  "description": "Live fantasy football and bet tracking overlays with customizable display controls.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "clipboardRead",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://site.api.espn.com/*",
+    "https://lm-api-reads.fantasy.espn.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "DLo Live Tracker",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.espn.com/*",
+        "https://sleeper.com/leagues/*/matchup*"
+      ],
+      "js": [
+        "parser.js",
+        "bet-content.js",
+        "fantasy-runtime.js"
+      ],
+      "css": [
+        "bet-content.css",
+        "fantasy-content.css",
+        "app-theme.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://*.fanduel.com/my-bets*"
+      ],
+      "js": [
+        "parser.js",
+        "bet-content.js",
+        "fanduel-content.js"
+      ],
+      "css": [
+        "bet-content.css",
+        "app-theme.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "exclude_matches": [
+        "https://*.espn.com/*",
+        "https://sleeper.com/leagues/*/matchup*",
+        "https://*.fanduel.com/my-bets*"
+      ],
+      "js": [
+        "global-overlay.js"
+      ],
+      "css": [
+        "global-overlay.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
